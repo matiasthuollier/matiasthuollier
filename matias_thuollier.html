@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Matias Isaac Thuollier Muñiz</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #150E3B;
+      --accent: #DEDB00;
+      --text: #e8e4f0;
+      --muted: rgba(232, 228, 240, 0.55);
+      --glass: rgba(255, 255, 255, 0.04);
+      --border: rgba(222, 219, 0, 0.15);
+      --nav-h: 72px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.75;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Subtle background texture */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 20% 10%, rgba(222,219,0,0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 80% 90%, rgba(100,80,220,0.08) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      background: rgba(21, 14, 59, 0.72);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 3rem;
+    }
+
+    nav ul li a {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--muted);
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: width 0.35s ease;
+    }
+
+    nav ul li a:hover {
+      color: var(--accent);
+    }
+
+    nav ul li a:hover::after {
+      width: 100%;
+    }
+
+    /* ── MAIN WRAPPER ── */
+    main {
+      position: relative;
+      z-index: 1;
+      padding-top: var(--nav-h);
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 90px 2rem 70px;
+      border-bottom: 1px solid var(--border);
+      animation: fadeUp 0.6s ease both;
+    }
+
+    section:last-of-type {
+      border-bottom: none;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+      opacity: 0.85;
+    }
+
+    .section-divider {
+      width: 36px;
+      height: 1px;
+      background: var(--accent);
+      margin-bottom: 2.2rem;
+      opacity: 0.6;
+    }
+
+    /* ── PRESENTACIÓN ── */
+    #presentacion h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+      line-height: 1.65;
+      color: var(--text);
+      max-width: 680px;
+    }
+
+    #presentacion h1 .highlight {
+      color: var(--accent);
+      font-style: italic;
+      font-weight: 500;
+    }
+
+    /* ── SOBRE MÍ ── */
+    #sobre-mi p {
+      font-size: 1rem;
+      color: var(--text);
+      line-height: 1.9;
+    }
+
+    /* ── LINKS ── */
+    a.page-link {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(222,219,0,0.3);
+      transition: border-color 0.2s ease, opacity 0.2s ease;
+    }
+
+    a.page-link:hover {
+      border-color: var(--accent);
+      opacity: 0.8;
+    }
+
+    /* ── REFERENCIAS ── */
+    #referencias .table-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    #referencias .card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.2rem 1.4rem;
+      background: var(--glass);
+      transition: border-color 0.25s ease, background 0.25s ease, transform 0.2s ease;
+    }
+
+    #referencias .card:hover {
+      border-color: rgba(222,219,0,0.4);
+      background: rgba(222,219,0,0.04);
+      transform: translateY(-2px);
+    }
+
+    #referencias .card .course {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+    }
+
+    #referencias .card a {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+      display: block;
+      transition: opacity 0.2s;
+    }
+
+    #referencias .card a:hover {
+      opacity: 0.75;
+    }
+
+    /* ── COMPAÑEROS ── */
+    #companeros .table-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    #companeros .card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.2rem 1.4rem;
+      background: var(--glass);
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      transition: border-color 0.25s ease, background 0.25s ease, transform 0.2s ease;
+    }
+
+    #companeros .card:hover {
+      border-color: rgba(222,219,0,0.4);
+      background: rgba(222,219,0,0.04);
+      transform: translateY(-2px);
+    }
+
+    #companeros .card .avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(222,219,0,0.12);
+      border: 1px solid rgba(222,219,0,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    #companeros .card a {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    #companeros .card a:hover {
+      opacity: 0.75;
+    }
+
+    /* ── CONTACTO ── */
+    #contacto .contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+    }
+
+    #contacto .contact-item {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      padding: 1rem 1.4rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--glass);
+      transition: border-color 0.25s ease, background 0.25s ease;
+    }
+
+    #contacto .contact-item:hover {
+      border-color: rgba(222,219,0,0.35);
+      background: rgba(222,219,0,0.03);
+    }
+
+    #contacto .contact-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      min-width: 160px;
+      flex-shrink: 0;
+    }
+
+    #contacto .contact-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      color: var(--text);
+    }
+
+    #contacto .contact-value a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(222,219,0,0.3);
+      transition: border-color 0.2s, opacity 0.2s;
+    }
+
+    #contacto .contact-value a:hover {
+      border-color: var(--accent);
+      opacity: 0.8;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 2.5rem 1rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      color: rgba(232,228,240,0.3);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      nav ul {
+        gap: 1.2rem;
+      }
+      nav ul li a {
+        font-size: 0.68rem;
+        letter-spacing: 0.1em;
+      }
+      section {
+        padding: 70px 1.2rem 50px;
+      }
+      #contacto .contact-label {
+        min-width: 120px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAVEGACIÓN ── -->
+  <nav>
+    <ul>
+      <li><a href="#presentacion">Presentación</a></li>
+      <li><a href="#sobre-mi">Sobre Mí</a></li>
+      <li><a href="#referencias">Referencias</a></li>
+      <li><a href="#companeros">Compañeros</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <!-- ── 1. PRESENTACIÓN ── -->
+    <section id="presentacion">
+      <p class="section-label">01 &mdash; Presentación</p>
+      <div class="section-divider"></div>
+      <h1>
+        Hola, mi nombre es <span class="highlight">Matias Isaac Thuollier Muñiz</span>,
+        soy un estudiante de Ciencias de la Computación en la Universidad Católica San Pablo.
+      </h1>
+    </section>
+
+    <!-- ── 2. SOBRE MÍ ── -->
+    <section id="sobre-mi">
+      <p class="section-label">02 &mdash; Sobre Mí</p>
+      <div class="section-divider"></div>
+      <p>
+        Actualmente tengo 18 años, vivo en la ciudad de Arequipa, Perú.
+        Soy ex alumno del
+        <a class="page-link" href="https://colegiointer.edu.pe/" target="_blank" rel="noopener">Colegio Internacional Peruano Británico</a>,
+        actualmente estudiante de pregrado en la
+        <a class="page-link" href="https://ucsp.edu.pe/" target="_blank" rel="noopener">Universidad Católica San Pablo</a>
+        de la carrera de
+        <a class="page-link" href="https://dc.ucsp.edu.pe/pregrado/" target="_blank" rel="noopener">Ciencias de la Computación</a>.
+        Cuento con un certificado dado por el
+        <a class="page-link" href="https://institutojobs.edu.pe/" target="_blank" rel="noopener">Instituto Jobs</a>
+        del curso de
+        <a class="page-link" href="https://institutojobs.edu.pe/curso-de-c-2/" target="_blank" rel="noopener">C++</a>,
+        y también cuento con el certificado de inglés C1 de grado C de la
+        <a class="page-link" href="https://www.cambridgeenglish.org/latinamerica/" target="_blank" rel="noopener">Universidad de Cambridge</a>.
+      </p>
+    </section>
+
+    <!-- ── 3. REFERENCIAS ── -->
+    <section id="referencias">
+      <p class="section-label">03 &mdash; Referencias</p>
+      <div class="section-divider"></div>
+      <div class="table-grid">
+        <div class="card">
+          <div class="course">Introducción a la Computación</div>
+          <a href="https://pe.linkedin.com/in/ecuadrosv" target="_blank" rel="noopener">Ernesto Cuadros</a>
+        </div>
+        <div class="card">
+          <div class="course">Fundamentos de la Programación</div>
+          <a href="https://pe.linkedin.com/in/kelly-vizconde-la-motta-3a57a4143" target="_blank" rel="noopener">Kelly Vizconde</a>
+        </div>
+        <div class="card">
+          <div class="course">Fundamentos Matemáticos para Programación</div>
+          <a href="https://pe.linkedin.com/in/fiorella-mar%C3%ADa-rend%C3%B3n-garc%C3%ADa-7aa9b7374" target="_blank" rel="noopener">Fiorella Rendón</a>
+        </div>
+        <div class="card">
+          <div class="course">Lógica</div>
+          <a href="https://www.linkedin.com/in/solange-tejada" target="_blank" rel="noopener">Solange Tejada</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 4. COMPAÑEROS ── -->
+    <section id="companeros">
+      <p class="section-label">04 &mdash; Compañeros</p>
+      <div class="section-divider"></div>
+      <div class="table-grid">
+        <div class="card">
+          <div class="avatar">A</div>
+          <a href="https://angel-hancco.github.io/" target="_blank" rel="noopener">Angel Hancco</a>
+        </div>
+        <div class="card">
+          <div class="avatar">D</div>
+          <a href="https://dannacosta.github.io/" target="_blank" rel="noopener">Daniela Acosta</a>
+        </div>
+        <div class="card">
+          <div class="avatar">P</div>
+          <a href="https://skilexz.github.io/Pablo-Joaquin-Gutierrez-Pilco/" target="_blank" rel="noopener">Pablo Gutierrez</a>
+        </div>
+        <div class="card">
+          <div class="avatar">J</div>
+          <a href="https://jafetsalinas1-arch.github.io/JAFET-FABIAN-SALINAS-ALEJANDRO/" target="_blank" rel="noopener">Jafet Salinas</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 5. CONTACTO ── -->
+    <section id="contacto">
+      <p class="section-label">05 &mdash; Información de Contacto</p>
+      <div class="section-divider"></div>
+      <div class="contact-list">
+        <div class="contact-item">
+          <span class="contact-label">Teléfono</span>
+          <span class="contact-value">+51 980 689 592</span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">Correo Electrónico</span>
+          <span class="contact-value">
+            <a href="mailto:matias.thuollier@ucsp.edu.pe">matias.thuollier@ucsp.edu.pe</a>
+          </span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">LinkedIn</span>
+          <span class="contact-value">
+            <a href="https://pe.linkedin.com/in/matias-isaac-thuollier-mu%C3%B1iz-16a4213b7" target="_blank" rel="noopener">LinkedIn</a>
+          </span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    &copy; 2025 &mdash; Matias Isaac Thuollier Muñiz &mdash; Arequipa, Perú
+  </footer>
+
+</body>
+</html>
